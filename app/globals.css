@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fffaf3;
+  --foreground: #2c160c;
+
+  --color-choco: #3a1f14;
+  --color-choco-light: #6b3a26;
+  --color-cream: #fff6e9;
+  --color-brand-red: #c1272d;
+  --color-brand-gold: #d9a441;
+  --color-muted: #7a6a5f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-choco: var(--color-choco);
+  --color-choco-light: var(--color-choco-light);
+  --color-cream: var(--color-cream);
+  --color-brand-red: var(--color-brand-red);
+  --color-brand-gold: var(--color-brand-gold);
+  --color-muted: var(--color-muted);
+  --font-display: var(--font-garamond), "Georgia", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.perspective {
+  perspective: 1200px;
+}
+
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.25s ease;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.tracked-mono {
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+
+.canvas3d-wrap {
+  position: relative;
+}
+
+.canvas3d-wrap canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-scene {
+  height: 440px;
+  position: relative;
+  background: radial-gradient(circle at 52% 42%, #ead2b9 0px, #f0e2d3 25%, transparent 61%);
+  perspective: 1000px;
+}
+
+.orbit {
+  position: absolute;
+  border: 1px solid rgba(185, 120, 69, 0.3);
+  border-radius: 50%;
+  width: 75%;
+  height: 55%;
+  top: 25%;
+  left: 12%;
+  transform: rotate(-23deg);
+}
+
+.orbit-two {
+  width: 52%;
+  height: 76%;
+  top: 12%;
+  left: 24%;
+  transform: rotate(32deg);
+}
+
+.nib {
+  position: absolute;
+  color: #b97845;
+  font-size: 26px;
+  animation: trukid-float 5s ease-in-out infinite;
+}
+
+.nib-one {
+  top: 20%;
+  left: 15%;
+}
+
+.nib-two {
+  right: 14%;
+  bottom: 24%;
+  animation-delay: 1.4s;
+}
+
+.chocolate-bar {
+  position: absolute;
+  top: 60px;
+  left: 30%;
+  width: min(330px, 52%);
+  aspect-ratio: 1.35 / 1;
+  transform: rotate(-14deg) rotateY(-20deg);
+  background: linear-gradient(135deg, #5b3428, #2b1714 70%);
+  border-radius: 18px;
+  box-shadow: rgba(58, 33, 27, 0.24) 28px 38px 35px, #8c5c45 2px 2px 0px inset;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #e7bd91;
+  animation: trukid-bar-float 7s ease-in-out infinite;
+}
+
+.chocolate-bar::before {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border: 1px solid rgba(216, 173, 133, 0.42);
+  border-radius: 10px;
+}
+
+.chocolate-bar span {
+  font: 600 clamp(35px, 4vw, 59px) / 0.7 var(--font-garamond), serif;
+  letter-spacing: -0.1em;
+  text-align: center;
+}
+
+.chocolate-bar small {
+  font: 10px var(--font-plex-mono), monospace;
+  letter-spacing: 0.2em;
+  margin-top: 28px;
+}
+
+.bar-shine {
+  position: absolute;
+  width: 140%;
+  height: 14px;
+  top: 20%;
+  left: -20%;
+  background: rgba(255, 231, 202, 0.13);
+  transform: rotate(-32deg);
+  filter: blur(10px);
+}
+
+.scene-caption {
+  position: absolute;
+  right: 2%;
+  bottom: 40px;
+  font: 11px/1.8 var(--font-plex-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: #695d56;
+}
+
+.scene-caption strong {
+  color: #3a211b;
+}
+
+@keyframes trukid-float {
+  50% {
+    transform: translateY(-13px) rotate(-11deg) rotateY(-20deg);
+  }
+}
+
+@keyframes trukid-bar-float {
+  50% {
+    transform: translateY(-13px) rotate(-11deg) rotateY(-20deg);
+  }
+}
+
+@media (max-width: 800px) {
+  .hero-scene {
+    height: 340px;
+    margin-top: 20px;
+  }
+  .chocolate-bar {
+    top: 45px;
+    left: 27%;
+    width: 48%;
+  }
+}
