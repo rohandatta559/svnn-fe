@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Reveal from "@/components/Reveal";
+import { sendContactMessage } from "@/lib/api";
 
 const MAP_EMBED_SRC =
   "https://maps.google.com/maps?q=SVNN+Foods&ll=17.7187279,78.5003068&z=16&output=embed";
@@ -28,10 +29,22 @@ const contactCards = [
 
 export default function ContactPage() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    setSent(true);
+    setError("");
+    setSending(true);
+    try {
+      await sendContactMessage(form);
+      setSent(true);
+    } catch (err) {
+      setError(err.message || "Failed to send message. Please try again.");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -68,10 +81,15 @@ export default function ContactPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
+              {error && (
+                <p className="rounded-xl bg-brand-red/10 px-4 py-2 text-sm text-brand-red">{error}</p>
+              )}
               <div>
                 <label className="mb-1 block text-sm font-medium text-choco/80">Name</label>
                 <input
                   required
+                  value={form.name}
+                  onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                   className="w-full rounded-xl border border-choco/15 bg-white px-4 py-3 text-choco outline-none focus:ring-2 focus:ring-brand-red"
                 />
               </div>
@@ -80,6 +98,8 @@ export default function ContactPage() {
                 <input
                   required
                   type="email"
+                  value={form.email}
+                  onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                   className="w-full rounded-xl border border-choco/15 bg-white px-4 py-3 text-choco outline-none focus:ring-2 focus:ring-brand-red"
                 />
               </div>
@@ -88,14 +108,17 @@ export default function ContactPage() {
                 <textarea
                   required
                   rows={5}
+                  value={form.message}
+                  onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                   className="w-full rounded-xl border border-choco/15 bg-white px-4 py-3 text-choco outline-none focus:ring-2 focus:ring-brand-red"
                 />
               </div>
               <button
                 type="submit"
-                className="rounded-full bg-brand-red px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-choco"
+                disabled={sending}
+                className="rounded-full bg-brand-red px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-choco disabled:opacity-50"
               >
-                Send Message
+                {sending ? "Sending…" : "Send Message"}
               </button>
             </form>
           )}
