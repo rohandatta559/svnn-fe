@@ -4,12 +4,12 @@ import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } fro
 
 /** Real packshots that orbit the centre bar. Angles are evenly spread. */
 const ORBIT = [
-  { src: "/images/products/frooto-jar.png", size: 96, depth: 1 },
-  { src: "/images/products/lollipop-strawberry.png", size: 82, depth: 0.75 },
-  { src: "/images/products/guava-jelly-mc.png", size: 88, depth: 0.9 },
+  { src: "/images/products/frooto-jar.jpg", size: 96, depth: 1 },
+  { src: "/images/products/lollipop-strawberry.jpg", size: 82, depth: 0.75 },
+  { src: "/images/products/guava-jelly-mc.jpg", size: 88, depth: 0.9 },
   { src: "/images/products/trukid-wafferr.jpg", size: 78, depth: 0.7 },
-  { src: "/images/products/choco-eclairs.png", size: 86, depth: 0.85 },
-  { src: "/images/products/mini-pop-jar.png", size: 80, depth: 0.72 },
+  { src: "/images/products/choco-eclairs.jpg", size: 86, depth: 0.85 },
+  { src: "/images/products/mini-pop-jar.jpg", size: 80, depth: 0.72 },
 ];
 
 const RADIUS_X = 178;
