@@ -143,7 +143,7 @@ export default function Hero3D() {
 
         <HeroShowcase />
       </div>
-
+      
       <div className="relative border-y border-choco/10 bg-choco py-3 text-white/85">
         <Marquee
           items={["Made With Care", "Shared With Joy", "Real Ingredients", "Small Batches"]}
