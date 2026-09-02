@@ -6,8 +6,8 @@ import HeroShowcase from "@/components/HeroShowcase";
 import MagneticButton from "@/components/MagneticButton";
 import CountUp from "@/components/CountUp";
 
-const LINE_1 = ["A", "little", "wonder,"];
-const LINE_2 = ["in", "every", "bite."];
+const LINE_1 = ["Tru"];
+const LINE_2 = ["Chocolate", "World"];
 
 const rise = {
   hidden: { y: "110%" },
