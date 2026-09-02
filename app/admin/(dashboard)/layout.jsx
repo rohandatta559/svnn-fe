@@ -7,6 +7,7 @@ import { useAuth } from "@/context/AuthContext";
 const nav = [
   { href: "/admin", label: "Overview" },
   { href: "/admin/products", label: "Products" },
+  { href: "/admin/testimonials", label: "Testimonials" },
 ];
 
 export default function DashboardLayout({ children }) {
