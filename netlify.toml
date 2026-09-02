@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Required for Next.js App Router on Netlify. Without this, Netlify serves the
+# build folder as plain static files and every route returns 404.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"
