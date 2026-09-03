@@ -9,14 +9,6 @@ import CountUp from "@/components/CountUp";
 const LINE_1 = ["Tru"];
 const LINE_2 = ["Chocolate", "World"];
 
-const rise = {
-  hidden: { y: "110%" },
-  show: (i) => ({
-    y: 0,
-    transition: { delay: 0.15 + i * 0.075, duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-  }),
-};
-
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
   show: (d) => ({ opacity: 1, y: 0, transition: { delay: d, duration: 0.7, ease: [0.22, 1, 0.36, 1] } }),
@@ -32,7 +24,7 @@ export default function Hero3D() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-cream">
+    <section className="relative flex min-h-screen flex-col overflow-hidden bg-cream">
       {/* Living aurora background */}
       <motion.div
         aria-hidden
@@ -49,7 +41,7 @@ export default function Hero3D() {
         transition={{ duration: 19, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pb-8 pt-24 md:grid-cols-[1.02fr_.98fr] md:pt-28">
+      <div className="relative mx-auto grid w-full max-w-6xl flex-1 items-center gap-12 px-6 pb-8 pt-24 md:grid-cols-[1.02fr_.98fr] md:pt-28">
         <div>
           <motion.p
             variants={fadeUp}
@@ -64,20 +56,8 @@ export default function Hero3D() {
 
           <h1 className="font-display text-5xl leading-[1.05] text-choco md:text-7xl">
             {[LINE_1, LINE_2].map((line, li) => (
-              <span key={li} className="block overflow-hidden pb-[.08em]">
-                {line.map((word, wi) => (
-                  <motion.span
-                    key={word + wi}
-                    variants={rise}
-                    initial="hidden"
-                    animate="show"
-                    custom={li * LINE_1.length + wi}
-                    className={`inline-block ${li === 1 ? "italic text-[#b97845]" : ""}`}
-                  >
-                    {word}
-                    {wi < line.length - 1 && " "}
-                  </motion.span>
-                ))}
+              <span key={li} className={`block pb-[.08em] ${li === 1 ? "italic text-[#b97845]" : ""}`}>
+                {line.join(" ")}
               </span>
             ))}
           </h1>
@@ -143,8 +123,8 @@ export default function Hero3D() {
 
         <HeroShowcase />
       </div>
-      
-      <div className="relative border-y border-choco/10 bg-choco py-3 text-white/85">
+
+      <div className="relative shrink-0 border-y border-choco/10 bg-choco py-3 text-white/85">
         <Marquee
           items={["Made With Care", "Shared With Joy", "Real Ingredients", "Small Batches"]}
         />
