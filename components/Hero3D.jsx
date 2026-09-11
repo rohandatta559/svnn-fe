@@ -15,7 +15,7 @@ const fadeUp = {
 };
 
 const STATS = [
-  { to: 41, suffix: "", label: "Treats" },
+  { to: 45, suffix: "", label: "Treats" },
   { to: 6, suffix: "", label: "Flavour worlds" },
   { to: 100, suffix: "%", label: "Made by hand" },
 ];
