@@ -21,7 +21,7 @@ export default function ImageSlider({ images, alt, category }) {
             src={slides[index]}
             alt={alt}
             category={category}
-            className="h-full w-full object-contain p-8"
+            className="h-full w-full object-contain p-4"
           />
         </motion.div>
       </div>

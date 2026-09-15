@@ -20,7 +20,7 @@ export default function ProductCard({ product }) {
             src={product.image}
             alt={product.name}
             category={product.category}
-            className="h-full w-full object-contain p-4"
+            className="h-full w-full object-contain p-2"
           />
         </div>
         <div className="flex flex-1 flex-col p-5">
