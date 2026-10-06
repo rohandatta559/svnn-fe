@@ -17,15 +17,27 @@ function resolveSrc(src) {
   return src;
 }
 
-export default function ProductImage({ src, alt, category, className = "" }) {
+export default function ProductImage({ src, alt, category, className = "", sizes, priority = false }) {
   const [failed, setFailed] = useState(false);
   const resolved = resolveSrc(src);
+
+  // Every catalog photo also has a 400px copy (name-sm.jpg) for cards and thumbnails,
+  // so a grid of 45 products downloads a few hundred KB instead of several MB.
+  const srcSet =
+    resolved && resolved.startsWith("/images/products/") && resolved.endsWith(".jpg")
+      ? `${resolved.replace(/\.jpg$/, "-sm.jpg")} 400w, ${resolved} 900w`
+      : undefined;
 
   if (resolved && !failed) {
     return (
       <img
         src={resolved}
+        srcSet={srcSet}
+        sizes={srcSet ? sizes || "300px" : undefined}
         alt={alt}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : undefined}
+        decoding="async"
         className={className}
         onError={() => setFailed(true)}
       />

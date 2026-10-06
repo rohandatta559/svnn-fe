@@ -21,6 +21,8 @@ export default function ImageSlider({ images, alt, category }) {
             src={slides[index]}
             alt={alt}
             category={category}
+            sizes="(max-width: 768px) 92vw, 560px"
+            priority
             className="h-full w-full object-contain p-4"
           />
         </motion.div>
@@ -47,6 +49,7 @@ export default function ImageSlider({ images, alt, category }) {
                 src={s}
                 alt={`${alt} view ${i + 1}`}
                 category={category}
+                sizes="64px"
                 className="h-full w-full object-contain p-1"
               />
             </button>
