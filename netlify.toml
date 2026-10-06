@@ -9,3 +9,16 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Files in public/ are served straight from Netlify, so they never see the header
+# rules in next.config.mjs. Without this every product photo is revalidated on
+# each visit - 45 round trips just to be told nothing changed.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/brand/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
